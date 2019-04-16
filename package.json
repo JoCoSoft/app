@@ -5,9 +5,15 @@
 	"homepage": "https://ionicframework.com/",
 	"scripts": {
 		"ng": "ng",
-		"start": "ng serve",
-		"build": "ng build",
-		"lint": "ng lint"
+		"lint": "ng lint",
+		"build:fresh": "npm run clean && npm install && npm run build:dev",
+		"build:dev": "ng build",
+		"build:prod": "ng build --aot --prod",
+		"serve:dev": "ng serve",
+		"serve:prod": "ng serve --aot --prod",
+		"clean": "rimraf ./www",
+		"compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -s",
+		"analyze:prod": "ng build --prod --stats-json"
 	},
 	"private": true,
 	"dependencies": {
@@ -35,12 +41,15 @@
 		"@angular/compiler": "~7.2.2",
 		"@angular/compiler-cli": "~7.2.2",
 		"@angular/language-service": "~7.2.2",
+		"@compodoc/compodoc": "^1.1.7",
 		"@ionic/angular-toolkit": "~1.4.0",
 		"@types/node": "~10.14.2",
 		"codelyzer": "~4.5.0",
+		"rimraf": "^2.6.3",
 		"ts-node": "~8.0.0",
 		"tslint": "~5.12.0",
-		"typescript": "~3.1.6"
+		"typescript": "~3.1.6",
+		"webpack-bundle-analyzer": "^3.0.3"
 	},
 	"description": "An Ionic project"
 }
