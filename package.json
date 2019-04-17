@@ -9,8 +9,8 @@
 		"build:fresh": "npm run clean && npm install && npm run build:dev",
 		"build:dev": "ng build",
 		"build:prod": "ng build --aot --prod",
-		"serve:dev": "ng serve",
-		"serve:prod": "ng serve --aot --prod",
+		"serve:dev": "ng serve --ssl true",
+		"serve:prod": "ng serve --aot --prod --ssl true",
 		"clean": "rimraf ./www",
 		"compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -s",
 		"analyze:prod": "ng build --prod --stats-json"

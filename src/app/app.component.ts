@@ -19,14 +19,19 @@ export class AppComponent {
 			title: 'List',
 			url: '/list',
 			icon: 'list'
+		},
+		{
+			title: 'Login',
+			url: '/login',
+			icon: 'return-right'
 		}
 	];
 
 	constructor(
 		private platform: Platform,
 		private splashScreen: SplashScreen,
-		private statusBar: StatusBar
-	) {
+		private statusBar: StatusBar) {
+
 		this.initializeApp();
 	}
 
