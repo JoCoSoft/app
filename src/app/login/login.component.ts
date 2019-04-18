@@ -11,4 +11,11 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit() { }
 
+	public onLogin(): void {
+
+	}
+
+	public onRegister(): void {
+
+	}
 }
