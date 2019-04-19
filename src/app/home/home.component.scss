@@ -1,20 +1,14 @@
+.info {
+	font-size: small;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
 .cards {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-
-	.registrationCard {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-
-		.registrationButton {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-around;
-		}
-	}
 
 	.card {
 		display: flex;

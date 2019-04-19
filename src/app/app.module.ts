@@ -11,8 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HomeComponent } from './home/home.component';
-import { VentService } from './services/vent.service';
 import { JobService } from './services/job.service';
+import { ToastService } from './services/toast.service';
 
 @NgModule({
 	declarations: [
@@ -35,8 +35,8 @@ import { JobService } from './services/job.service';
 			provide: RouteReuseStrategy, useClass: IonicRouteStrategy
 		},
 		AuthenticationService,
-		VentService,
-		JobService
+		JobService,
+		ToastService
 	],
 	bootstrap: [AppComponent]
 })
