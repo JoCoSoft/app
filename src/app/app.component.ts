@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-
-import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
 	selector: 'app-root',
@@ -19,14 +18,24 @@ export class AppComponent {
 			title: 'List',
 			url: '/list',
 			icon: 'list'
+		},
+		{
+			title: 'Login',
+			url: '/login',
+			icon: 'return-right'
+		},
+		{
+			title: 'Register',
+			url: '/register',
+			icon: 'rocket'
 		}
 	];
 
 	constructor(
 		private platform: Platform,
 		private splashScreen: SplashScreen,
-		private statusBar: StatusBar
-	) {
+		private statusBar: StatusBar) {
+
 		this.initializeApp();
 	}
 
