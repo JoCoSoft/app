@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VentService } from '../services/vent.service';
-import { Vent } from '../models/Vent';
-import { JobService } from '../services/job.service';
+import { Data } from '../models/Data';
 import { Job } from '../models/Job';
+import { JobService } from '../services/job.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
 	selector: 'app-home',
@@ -11,25 +11,17 @@ import { Job } from '../models/Job';
 })
 export class HomeComponent implements OnInit {
 
-	private _vent = new Vent();
-	private _job = new Job();
+	private _job: Job;
 
-	constructor(private _ventService: VentService, private _jobService: JobService) { }
+	constructor(
+		private _jobService: JobService,
+		private _toastService: ToastService) {
 
-	ngOnInit() { }
-
-	public onRegister(): void {
-		this._vent.serial = 'dev-vent';
-		this._vent.code = '123456';
-		this._ventService.Register(this._vent).subscribe((response: Vent) => {
-			console.log('Register: ', response);
-			if (response && response.status && response.status === 'registered') {
-				// TODO: Toast 'Registered..'
-			}
-		});
-
-		// TODO: Disable button?
+		this._job = new Job();
+		this._job.data = new Data();
 	}
+
+	ngOnInit() {}
 
 	public onOpen(): void {
 		this._job.name = 'open';
@@ -41,7 +33,7 @@ export class HomeComponent implements OnInit {
 		this._jobService.Open(this._job).subscribe((response: Job) => {
 			console.log('Open: ', response);
 			if (response) {
-				// TODO: Toast 'Opening..'
+				this._toastService.Toast('Opening..', 5000);
 			}
 		});
 
@@ -58,7 +50,7 @@ export class HomeComponent implements OnInit {
 		this._jobService.Close(this._job).subscribe((response: Job) => {
 			console.log('Close: ', response);
 			if (response) {
-				// TODO: Toast 'Closing..'
+				this._toastService.Toast('Closing..', 5000);
 			}
 		});
 
