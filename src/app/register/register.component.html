@@ -16,9 +16,10 @@
 		</ion-card-header>
 
 		<ion-card-content>
-			<ion-input placeholder="Email" [(value)]="_user.email" ></ion-input>
-			<ion-input placeholder="Password" [(value)]="_user.password"></ion-input>
-			<ion-input placeholder="Confirm Password" [(value)]="_user.confirmPassword"></ion-input>
+			<ion-input placeholder="Name" [(ngModel)]="_user.name" ></ion-input>
+			<ion-input placeholder="Email" [(ngModel)]="_user.email" ></ion-input>
+			<ion-input placeholder="Password" [(ngModel)]="_user.password"></ion-input>
+			<ion-input placeholder="Confirm Password" [(ngModel)]="_user.confirmPassword"></ion-input>
 			<div class="buttons">
 				<ion-button size="small" color="primary" shape="round" fill="outline" (click)=onCreateAccount()>Create Account</ion-button>
 			</div>
