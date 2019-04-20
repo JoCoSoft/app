@@ -13,6 +13,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { HomeComponent } from './home/home.component';
 import { JobService } from './services/job.service';
 import { ToastService } from './services/toast.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -26,7 +27,8 @@ import { ToastService } from './services/toast.service';
 		BrowserModule,
 		IonicModule.forRoot(),
 		AppRoutingModule,
-		HttpClientModule
+		HttpClientModule,
+		FormsModule
 	],
 	providers: [
 		StatusBar,

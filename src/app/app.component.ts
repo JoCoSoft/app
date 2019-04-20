@@ -18,11 +18,6 @@ export class AppComponent {
 			title: 'Login',
 			url: '/login',
 			icon: 'return-right'
-		},
-		{
-			title: 'Register',
-			url: '/register',
-			icon: 'rocket'
 		}
 	];
 

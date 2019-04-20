@@ -16,8 +16,8 @@
 		</ion-card-header>
 
 		<ion-card-content>
-			<ion-input placeholder="Email" [(value)]="_user.email" ></ion-input>
-			<ion-input placeholder="Password" [(value)]="_user.password"></ion-input>
+			<ion-input placeholder="Email" [(ngModel)]="_user.email" ></ion-input>
+			<ion-input placeholder="Password" [(ngModel)]="_user.password"></ion-input>
 			<div class="buttons">
 				<ion-button size="small" color="primary" shape="round" fill="outline" (click)=onLogin()>Login</ion-button>
 				<ion-button size="small" color="secondary" shape="round" (click)="onRegister()">Register</ion-button>

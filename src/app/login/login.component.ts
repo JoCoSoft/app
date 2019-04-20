@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../models/User';
 import { AuthenticationService } from '../services/authentication.service';
 import { TokenUser } from '../models/TokenUser';
-import { Route, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
@@ -18,16 +18,12 @@ export class LoginComponent implements OnInit {
 	ngOnInit() { }
 
 	public onLogin(): void {
-		// TODO: API needs to allow CORS Access-Control-Allow-Origin
-
-		// this._authenticationService.Login(this._user).subscribe((response: Token) => {
-		// 	console.log(response);
-		// 	if (response && response.token) {
-		// 		this._router.navigate(['home']);
-		// 	}
-		// });
-
-		this._router.navigate(['home']);
+		this._authenticationService.Login(this._user).subscribe((response: TokenUser) => {
+			console.log(response);
+			if (response && response.token) {
+				this._router.navigate(['home']);
+			}
+		});
 	}
 
 	public onRegister(): void {
