@@ -22,17 +22,19 @@ export class AppComponent {
 	];
 
 	constructor(
-		private platform: Platform,
-		private splashScreen: SplashScreen,
-		private statusBar: StatusBar) {
+		private _platform: Platform,
+		private _splashScreen: SplashScreen,
+		private _statusBar: StatusBar) {
 
+		this._splashScreen.show();
 		this.initializeApp();
 	}
 
 	initializeApp() {
-		this.platform.ready().then(() => {
-			this.statusBar.styleDefault();
-			this.splashScreen.hide();
+		this._platform.ready().then(() => {
+			this._statusBar.styleDefault();
+
+			this._splashScreen.hide();
 		});
 	}
 }
