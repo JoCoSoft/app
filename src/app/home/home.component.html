@@ -10,10 +10,10 @@
 </ion-header>
 
 <div class="info">
-	Id: 1dea4651-d230-4a46-8845-b8e0c436d8bf<br>
-	Code: 123456<br>
-	Serial: dev-vent<br>
-	Status: registered<br>
+	Id: 1dea4651-d230-4a46-8845-b8e0c436d8bf<br />
+	Code: 123456<br />
+	Serial: dev-vent<br />
+	Status: registered<br />
 </div>
 
 <div class="cards">
@@ -25,8 +25,22 @@
 
 			<ion-card-content>
 				<div class="buttons">
-					<ion-button size="medium" color="primary" shape="round" (click)=onOpen()>Open</ion-button>
-					<ion-button size="medium" color="danger" shape="round" (click)=onClose()>Close</ion-button>
+					<ion-button
+						size="medium"
+						color="primary"
+						shape="round"
+						(click)="onOpen()"
+						[disabled]="isMoving()"
+						>Open</ion-button
+					>
+					<ion-button
+						size="medium"
+						color="danger"
+						shape="round"
+						(click)="onClose()"
+						[disabled]="isMoving()"
+						>Close</ion-button
+					>
 				</div>
 			</ion-card-content>
 		</ion-card>
