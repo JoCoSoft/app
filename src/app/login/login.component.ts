@@ -1,32 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from '../models/User';
-import { AuthenticationService } from '../services/authentication.service';
-import { TokenUser } from '../models/TokenUser';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { User } from "../models/User";
+import { AuthenticationService } from "../services/authentication.service";
+import { TokenUser } from "../models/TokenUser";
 
 @Component({
-	selector: 'app-login',
-	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss'],
+    selector: "app-login",
+    templateUrl: "./login.component.html",
+    styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
+    public _user = new User();
 
-	public _user = new User();
+    constructor(
+        private _authenticationService: AuthenticationService,
+        private _router: Router
+    ) {}
 
-	constructor(private _authenticationService: AuthenticationService, private _router: Router) { }
+    ngOnInit() {}
 
-	ngOnInit() { }
+    public onLogin(): void {
+        this._authenticationService
+            .Login(this._user)
+            .subscribe((response: TokenUser) => {
+                console.log(response);
+                if (response && response.token) {
+                    this._authenticationService
+                        .PersistToken(response.token)
+                        .then(_ => this._router.navigate(["home"]))
+                        .catch(err => {
+                            throw err;
+                        });
+                }
+            });
+    }
 
-	public onLogin(): void {
-		this._authenticationService.Login(this._user).subscribe((response: TokenUser) => {
-			console.log(response);
-			if (response && response.token) {
-				this._router.navigate(['home']);
-			}
-		});
-	}
-
-	public onRegister(): void {
-		this._router.navigate(['register']);
-	}
+    public onRegister(): void {
+        this._router.navigate(["register"]);
+    }
 }

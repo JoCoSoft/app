@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { JobService } from './services/job.service';
 import { ToastService } from './services/toast.service';
 import { FormsModule } from '@angular/forms';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
 	declarations: [
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 	imports: [
 		BrowserModule,
 		IonicModule.forRoot(),
+		IonicStorageModule.forRoot(),
 		AppRoutingModule,
 		HttpClientModule,
 		FormsModule
@@ -34,7 +36,8 @@ import { FormsModule } from '@angular/forms';
 		StatusBar,
 		SplashScreen,
 		{
-			provide: RouteReuseStrategy, useClass: IonicRouteStrategy
+			provide: RouteReuseStrategy,
+			useClass: IonicRouteStrategy
 		},
 		AuthenticationService,
 		JobService,
@@ -42,4 +45,4 @@ import { FormsModule } from '@angular/forms';
 	],
 	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

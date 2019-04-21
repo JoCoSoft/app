@@ -1,23 +1,38 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { User } from '../models/User';
-import { TokenUser } from '../models/TokenUser';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { User } from "../models/User";
+import { TokenUser } from "../models/TokenUser";
+import { ApiService } from "./api.service";
+import { Storage } from "@ionic/storage";
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: "root"
 })
-export class AuthenticationService {
+export class AuthenticationService extends ApiService {
+    constructor(private _http: HttpClient, private storage: Storage) {
+        super();
+    }
 
-	private _domain = 'https://jocosoft-api.herokuapp.com/';
+    public Register(user: User): Observable<User> {
+        return this._http.post<User>(
+            `${this._domain}api/v1/users/sign-up`,
+            user
+        );
+    }
 
-	constructor(private _http: HttpClient) {}
+    public Login(user: User): Observable<TokenUser> {
+        return this._http.post<TokenUser>(
+            `${this._domain}api/v1/users/sign-in`,
+            user
+        );
+    }
 
-	public Register(user: User): Observable<User> {
-		return this._http.post<User>(`${this._domain}api/v1/users/sign-up`, user);
-	}
+    public async GetToken(): Promise<string> {
+        return await this.storage.get("AUTH_TOKEN");
+    }
 
-	public Login(user: User): Observable<TokenUser> {
-		return this._http.post<TokenUser>(`${this._domain}api/v1/users/sign-in`, user);
-	}
+    public async PersistToken(token: string) {
+        await this.storage.set("AUTH_TOKEN", token);
+    }
 }
