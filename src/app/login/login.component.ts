@@ -25,8 +25,12 @@ export class LoginComponent implements OnInit {
             .subscribe((response: TokenUser) => {
                 console.log(response);
                 if (response && response.token) {
-                    localStorage.setItem("TOKEN", response.token);
-                    this._router.navigate(["home"]);
+                    this._authenticationService
+                        .PersistToken(response.token)
+                        .then(_ => this._router.navigate(["home"]))
+                        .catch(err => {
+                            throw err;
+                        });
                 }
             });
     }

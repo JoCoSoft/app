@@ -3,15 +3,16 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../models/User";
 import { TokenUser } from "../models/TokenUser";
+import { ApiService } from "./api.service";
+import { Storage } from "@ionic/storage";
 
 @Injectable({
     providedIn: "root"
 })
-export class AuthenticationService {
-    // TODO READ FROM CONFIG FILE
-    private _domain = "https://23aafa66.ngrok.io/";
-
-    constructor(private _http: HttpClient) {}
+export class AuthenticationService extends ApiService {
+    constructor(private _http: HttpClient, private storage: Storage) {
+        super();
+    }
 
     public Register(user: User): Observable<User> {
         return this._http.post<User>(
@@ -25,5 +26,13 @@ export class AuthenticationService {
             `${this._domain}api/v1/users/sign-in`,
             user
         );
+    }
+
+    public async GetToken(): Promise<string> {
+        return await this.storage.get("AUTH_TOKEN");
+    }
+
+    public async PersistToken(token: string) {
+        await this.storage.set("AUTH_TOKEN", token);
     }
 }
